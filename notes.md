@@ -1,32 +1,36 @@
 # Notes
 
-## About Gunicorn
+## Range slider references
 
-- Gunicorn takes the place of the flask development server. It is intended for production use. I believe you can technically still use the embedded flask server, but Gunicorn might be more "best practice."
+- https://www.youtube.com/watch?v=D3PcgC6Lfao
 
-- To start the server, use the following syntax:
-
-```sh
-guincorn [name of the file that the app object is in]:[the name of the app object itself]
+```html
+<form action="#" method="POST">
+  {% if page_links.previous %}
+    <input type="button" class="btn btn-primary" value="Previous"></button>
+  {% else %}
+  <input type="button" class="btn btn-primary disabled" value="Previous"></button>
+  {% endif %}
+  {% if page_links.next %}
+  <input type="button" class="btn btn-primary" value="Next"></button>
+  {% else %}
+  <input type="button" class="btn btn-primary disabled" value="Next"></button>
+  {% endif %}
+</form>
 ```
 
-## Git integration
+## Referencing CSS, HTML, and scripts locally
 
-Your identification has been saved in /home/ubuntu/.ssh/id_ed25519
-Your public key has been saved in /home/ubuntu/.ssh/id_ed25519.pub
-The key fingerprint is:
-SHA256:2AveGrVi9ZrUctGOyKpRcGLMJOpWnUL2hzVSqfHh02g chrishoina@gmail.com
-The key's randomart image is:
-+--[ED25519 256]--+
-|  .o...+.        |
-| .o=o.=o.        |
-|.  o*=*.+        |
-|. ...=.E . .     |
-| o    = S . .    |
-|.    o * * +     |
-|    . = O = .    |
-|     o * =       |
-|    ..o o        |
-+----[SHA256]-----+
+- [This thread](https://stackoverflow.com/questions/16677095/what-is-the-right-way-to-write-my-script-src-url-for-a-local-development-envir) on stackoverflow was helpful.
 
-# JWT libraries https://jwt.io/libraries?language=Python
+- [Good page](https://flask.palletsprojects.com/en/3.0.x/tutorial/templates/) to bookmark for the {{ url_for() }} syntax.
+
+## Modal
+
+### JS `number();` function
+
+- Reference for how the movie gross sales "string" was converted to a number. [Video link](https://youtu.be/FUngCjDzFDo?si=hPyvM6liu5Rdk_K7).
+
+- Helpful freeCodeCamp [article](https://www.freecodecamp.org/news/how-to-convert-a-string-to-a-number-in-javascript/).
+
+- `Intl.NumberFormat();` mdn web docs [reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat#specifications).
