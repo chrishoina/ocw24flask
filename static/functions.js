@@ -1,7 +1,8 @@
 async function fetchData(event){
+
     try{
         const movie_id = event.target.getAttribute('data-movie_id');
-        const response = await fetch(`https://gf641ea24ecc468-moviestream23ai.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/mymovies/movie-single/${movie_id}`) 
+        const response = await fetch(`[ORDS Endpoint]${movie_id}`);
         console.log(response);
         if(!response.ok){
             throw new Error("Could not fetch resource");

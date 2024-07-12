@@ -2,14 +2,15 @@ from flask import Flask, redirect, render_template, url_for, request, Response
 import requests
 import jinja2
 from flask_wtf import FlaskForm
+import endpoints
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
     import requests
-    r1 = requests.get('https://gf641ea24ecc468-moviestream23ai.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/mymovies/movie-genre')
-    # print(response.text)
+
+    r1 = requests.get(endpoints.movie_genre_endpoint)
 
     genrelist = []
 
@@ -27,7 +28,7 @@ def handle_data():
         runtime = request.form.get('runtime')
         data1 = {'genre': genre,'runtime': runtime}
 
-        r2 = requests.get('https://gf641ea24ecc468-moviestream23ai.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/mymovies/movie-all', params=data1)
+        r2 = requests.get(endpoints.movie_all_endpoint, params=data1)
 
         data2 = r2.json()
         
