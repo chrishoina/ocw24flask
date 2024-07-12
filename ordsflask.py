@@ -1,7 +1,6 @@
 from flask import Flask, redirect, render_template, url_for, request, Response
 import requests
 import jinja2
-from flask_wtf import FlaskForm
 import endpoints
 
 app = Flask(__name__)
