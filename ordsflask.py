@@ -1,7 +1,7 @@
 from flask import Flask, redirect, render_template, url_for, request, Response
 import requests
 import jinja2
-# import endpoints
+import endpoints
 
 app = Flask(__name__)
 
@@ -9,7 +9,7 @@ app = Flask(__name__)
 def index():
     import requests
 
-    r1 = requests.get('[BASE PATH]/ords/admin/mymovies/movie-genre')
+    r1 = requests.get(endpoints.movie_genre)
 
     genrelist = []
 
@@ -27,7 +27,7 @@ def handle_data():
         runtime = request.form.get('runtime')
         data1 = {'genre': genre,'runtime': runtime}
 
-        r2 = requests.get('[BASE PATH]/ords/admin/mymovies/movie-all', params=data1)
+        r2 = requests.get(endpoints.movie_all, params=data1)
 
         data2 = r2.json()
         

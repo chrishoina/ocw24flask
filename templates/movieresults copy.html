@@ -1,23 +1,7 @@
 {% extends "navbar.html" %}
+
 {% block content %}
-     <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h2 class="modal-title fs-5" id="exampleModalLabel"></h2>
-              <i class="bi bi-info-circle p-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-bs-title="Clicking the + triggered a JavaScript Fetch request to the <code>ords/mymovies/movie-single/:id</code> ORDS endpoint. For this Fetch <code>GET</code> request, the associated movie's <code>movie_id</code> value was used as a route parameter."></i>
-            </div>
-            <div class="modal-body">
-              <div class="container-fluid">
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-outline-primary btn-sm" data-bs-dismiss="modal">Close</button>
-            </div>
-            </div>
-          </div>
-        </div>
+  <body>
     <div class="container">
       <table class="table table-hover">
           <thead>
@@ -76,8 +60,6 @@
         </ul>
       </nav>
     </div>
-      <script> import { endpoint} from '/static/endpoint.js';
-      </script>
       <script src="{{ url_for('static', filename='popper.min.js') }}"></script>
       <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
       <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script> -->
@@ -87,4 +69,5 @@
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
         const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
       </script>
+    </body>
 {% endblock %}
