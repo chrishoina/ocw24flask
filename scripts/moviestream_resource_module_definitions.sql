@@ -15,9 +15,9 @@
 BEGIN
   ORDS.ENABLE_SCHEMA(
       p_enabled             => TRUE,
-      p_schema              => '',
+      p_schema              => 'TEST',
       p_url_mapping_type    => 'BASE_PATH',
-      p_url_mapping_pattern => '',
+      p_url_mapping_pattern => 'test',
       p_auto_rest_auth      => FALSE);
     
   ORDS.DEFINE_MODULE(
