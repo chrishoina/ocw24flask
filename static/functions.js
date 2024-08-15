@@ -1,9 +1,8 @@
-
 async function fetchData(event){
 
     try{
         const movie_id = event.target.getAttribute('data-movie_id');
-        const response = await fetch(`[BASE URI GOES HERE]/ords/admin/mymovies/movie-single/${movie_id}`);
+        const response = await fetch(`[BASE URI for /movie_single/:id]${movie_id}`);
         console.log(response);
         if(!response.ok){
             throw new Error("Could not fetch resource");
