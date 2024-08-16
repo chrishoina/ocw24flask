@@ -1,8 +1,8 @@
 {% extends "navbar.html" %}
 
 <!-- Jinja2 template engine above and below. Extends = builds on or expands on the referenced file. In this 
-case navbar.html is the "base", and "content" expands on it. The block content and endblock will
-be inserted in the the corresponding reference in the "navbar.html" page. You'll see the block content 
+case, "navbar.html" is the "base", and "content" expands on it. The block content and endblock will
+be inserted in the corresponding reference on the "navbar.html" page. You'll see the block content 
 and endblock in the <body> section of the "navbar.html" page.-->
 
 {% block content %}
@@ -15,8 +15,8 @@ and endblock in the <body> section of the "navbar.html" page.-->
         <div class="row row-cols-4 ">
 
 <!-- genrelist and genres are passed as variables by the @app.route('/') and def index(): function. This is what 
-loads when you visit the landing page. This is your first ORDS API. If you are reviewing in the Database Actions 
-REST Workshop, this is the /mymovies/movie-genre endpoint. -->
+loads when you visit the landing page. This is your first ORDS API. This is the /mymovies/movie-genre endpoint if 
+you are reviewing in the Database Actions REST Workshop. -->
 
             {% for genre in genrelist %}
           <div class="form-check">
@@ -31,19 +31,21 @@ REST Workshop, this is the /mymovies/movie-genre endpoint. -->
               <li class="list-inline-item">
 
 <!-- You can see how this oninput listener works in conjunction with the sliderChange(val) JavaScript function. 
-This function can be found at the end of this page. Here you can see there is another example of Template Literals
-when working in JavaScript. Once a user makes a selection, the value will populate and the "mins" string will be 
-added. We've included the whitespace, so the styling looks better. So instead of "210mins", you'll see "210 mins".  -->
+The sliderChange(); function can be found at the end of this page. There, you'll see another example of Template Literals
+in JavaScript. Once a user makes a selection, the value will populate and the "mins" string will be 
+added. I've included the whitespace, so the styling looks better; instead of "210mins", you'll see "210 mins".  -->
 
                 <input type="range" class="form-range" min="90" max="270" step="30" id="customRange3" name="runtime" oninput="sliderChange(this.value);">
 
 <!-- Why these range values? This was the simplest way to make this type of selection work with the ORDS API. A user 
-will make two selections, one for the movie genre, and another for the movie runtime. The Handler code, which you can 
-see being passed back to the python script in the "@app.route('/handle_data', methods=['GET', 'POST']) def handle_data():"
-will pass these two parameters to ORDS. If you are new two SQL or PLSQL, then you'll see in the handler code, it has 
-been designed to allow for a single genre selection, and a single runtime. The HTML form, the radio buttons, forces
-a user to make one selection. That is how these radio buttons work. And the genre forces the user to make a single 
+will make two selections, one for the movie genre, and another for the movie runtime. These are then passed back to the Python 
+script, as seen in the "@app.route('/handle_data', methods=['GET', 'POST']) def handle_data():" route and associated function. These parameters are ultimately 
+sent to the corresponding ORDS endpoint.-->
+
+<!-- You'll notice in the Database Actions REST Workshop, that the handler code has been designed to allow for a single genre selection and a single runtime. 
+You'll also notice the HTML form and the radio buttons force a user to make one selection (that is how these radio buttons work). The runtime slider forces the user to make a single 
 selection as well.-->
+                  
               </li>
               <li class="list-inline-item">
                 <label for="customRange3" class="form-label" id="output"> mins</label>
@@ -69,9 +71,8 @@ selection as well.-->
   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>     -->
   <script src="{{ url_for('static', filename='functions.js') }}"></script>  
 
-<!-- These tooltips are outside the scope of this sample application. But in case you are curious, here is the 
-associated block of code. We are using Bootstraps versions of Tooltips. They require the Popper library. 
-That is why you see reference to this in the above script tag. -->
+<!-- These tooltips are outside the scope of this sample application. But in case you are curious, here is the associated block of code. 
+I'm using the Bootstraps versions of Tooltips; they require the Popper library. That is why you see a reference to this in the above script tag. -->
 
   <script>
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
