@@ -9,13 +9,13 @@ app = Flask(__name__)
 # I reference this as the index page, or sometimes landing page. There are three portions here:
 #       1. the route, @app.route('/)
 #       2. the index function, def index():
-#       3. the result of the function, which is to render an html template named 'index.html'
+#       3. the result of the function, which is to render an html template named 'index.html.'
 # What you see on the index page is the product of all these "things" combined.
 
 @app.route('/')
 def index():
 
-    r1 = requests.get("https://gf641ea24ecc468-moviestream23ai.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/mymovies/movie-genre")
+    r1 = requests.get("[Your /ords/mymovies/movie-genre endpoint goes here]")
 
 # Creating an empty list, which will be populated with the items from this ORDS API. If you are viewing the
 # Handler code, in the Database Actions REST Workshop then you'll see how a "Unique" list of movie genres
@@ -67,7 +67,7 @@ def handle_data():
         runtime = request.form.get('runtime')
         data1 = {'genre': genre,'runtime': runtime}
 
-        r2 = requests.get("https://gf641ea24ecc468-moviestream23ai.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/mymovies/movie-all", params=data1)
+        r2 = requests.get("[Your ords/mymovies/movie-all endpoint goes here]", params=data1)
 
         data2 = r2.json()
         
