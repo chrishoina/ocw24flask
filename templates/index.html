@@ -1,5 +1,10 @@
 {% extends "navbar.html" %}
 
+<!-- Jinja2 template engine above and below. Extends = builds on or expands on the referenced file. In this 
+case navbar.html is the "base", and "content" expands on it. The "{% block content %} " and {% endblock % } 
+will be inserted in the the corresponding reference in the "navbar.html" page. You'll see the {% block content %} 
+and {% endblock %} in the <body> section of the "navbar.html" page.-->
+
 {% block content %}
     <div class="container"> 
       <ul class="list-inline">
@@ -8,6 +13,11 @@
       </ul>    
       <form action="{{ url_for('handle_data') }}" method="POST">
         <div class="row row-cols-4 ">
+
+<!-- genrelist and genres are passed as variables by the @app.route('/') and def index(): function. This is what 
+loads when you visit the landing page. This is your first ORDS API. If you are reviewing in the Database Actions 
+REST Workshop, this is the /mymovies/movie-genre endpoint. -->
+
             {% for genre in genrelist %}
           <div class="form-check">
             <input class="form-check-input" type="radio" value="{{ genre }}" id="{{ genre }}" name="genre" required>
@@ -19,7 +29,21 @@
         <div class="row row-cols">
             <ul class="list-inline">
               <li class="list-inline-item">
+
+<!-- You can see how this oninput listener works in conjunction with the sliderChange(val) JavaScript function. 
+This function can be found at the end of this page. Here you can see there is another example of Template Literals
+when working in JavaScript. Once a user makes a selection, the value will populate and the "mins" string will be 
+added. We've included the whitespace, so the styling looks better. So instead of "210mins", you'll see "210 mins".  -->
+
                 <input type="range" class="form-range" min="90" max="270" step="30" id="customRange3" name="runtime" oninput="sliderChange(this.value);">
+
+<!-- Why these range values? This was the simplest way to make this type of selection work with the ORDS API. A user 
+will make two selections, one for the movie genre, and another for the movie runtime. The Handler code, which you can 
+see being passed back to the python script in the "@app.route('/handle_data', methods=['GET', 'POST']) def handle_data():"
+will pass these two parameters to ORDS. If you are new two SQL or PLSQL, then you'll see in the handler code, it has 
+been designed to allow for a single genre selection, and a single runtime. The HTML form, the radio buttons, forces
+a user to make one selection. That is how these radio buttons work. And the genre forces the user to make a single 
+selection as well.-->
               </li>
               <li class="list-inline-item">
                 <label for="customRange3" class="form-label" id="output"> mins</label>
@@ -39,12 +63,16 @@
       </form>
     </div> 
   </body>
-  <script src="{{ url_for('static', filename='functions.js') }}"></script>  
   <script src="{{ url_for('static', filename='popper.min.js') }}"></script>
   <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
   <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script> -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>     -->
   <script type="module" src="{{ url_for('static', filename='functions.js') }}"></script>  
+
+<!-- These tooltips are outside the scope of this sample application. But in case you are curious, here is the 
+associated block of code. We are using Bootstraps versions of Tooltips. They require the Popper library. 
+That is why you see reference to this in the above script tag. -->
+
   <script>
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));

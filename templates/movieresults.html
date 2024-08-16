@@ -1,6 +1,12 @@
 {% extends "navbar.html" %}
 {% block content %}
-     <!-- Modal -->
+     <!-- Modal content -->
+
+<!-- Most of the code you see here is taken from the Bootstrap version of a Modal. There are 
+several to choose from. The exampleModal id corresponds with the data-bs-target="#exampleModal" attribute
+seen in the {{ item.abbreviated_summary }} line of code - found in the thead sections of the table. These two
+pieces work together to make the modal "work".   -->
+
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
@@ -20,8 +26,19 @@
         </div>
     <div class="container">
       <table class="table table-hover">
+
+<!-- What is seen below are the thead and trow variables that are passed from the /handle_data route. The thead and 
+trow lists are 0-indexed. We only rely on indexing for the thead list however. -->
+
           <thead>
             <tr>
+
+<!-- Adding the tooltip here in the table header was a stylistic choice. -->
+<!-- The capitalize function is something built into Jinja2. Its an easy way to perform light formatting on incoming 
+strings. These parameters come via the def handle_data(): function. And technically the def next_page(): 
+and def previous_page(): functions when a user clicks the Next and Previous links. These links are at the 
+bottom of the page. -->
+
               <th><i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-bs-title="The table headers and data are populated from the <code>JSON</code> payload of a <code>GET</code> request to the <code>ords/mymovies/movie-all</code> ORDS endpoint."></i>  {{ thead[1] | capitalize }}</th>
               <th>{{ thead[2] | capitalize }}</th>
               <th>{{ thead[3] | capitalize }}</th>
@@ -29,6 +46,12 @@
               <th>Abbreviated Summary</th>
             </tr>
           </thead>
+
+<!-- Below you see dot notation, for looping through the trow lists. There is another nested loop for genres that 
+will populate. If you review the item.abbreviated_summary row, you'll see onClick="fetchData(event)". This is an 
+event listener and JavaScript function. If you review the functions.js file, you'll see how the {{ item.movie_id }} 
+value is passed to the function. -->
+
           <tbody>
                 {% for item in trow %}
             <tr>
@@ -37,15 +60,28 @@
               <td>{{ item.year }}</td>
               <td>{{ item.runtime }}</td>
               <td>{{ item.abbreviated_summary }}<i type="button" class="bi bi-plus" style="color: blue;" onclick="fetchData(event);" data-movie_id="{{ item.movie_id }}" name="movie_id" value="{{ item.movie_id }}" data-bs-toggle="modal" data-bs-target="#exampleModal"></i></td>
-              <!-- <td> -->
-              <!-- Button trigger modal -->
-              <!-- <button type="button" onclick="fetchData(event);" data-movie_id="{{ item.movie_id }}" name="movie_id" value="{{ item.movie_id }}" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button> -->
-              <!-- </td> -->
                 {% endfor %}        
             </tr>
           </tbody>
       </table>
     </div>
+
+<!-- This pagination class comes directly from Bootstrap. There are many ways you can display pagination,
+this is just one method. Everything you see below is encapsulated in a <form>. Doing this allows you to
+easily pass user selections (button clicks) to the python script. You'll see the page_links variable. This comes from
+the def /handle_data(): function. But it also comes from the def next_page(): and def previous_page(): functions.
+
+When you first visit this page, you are doing so from the @app.route('/handle_data') route and def handle_data(): function. 
+But when a user clicks a Next or Previous button, the user is actually redirected to a new page entirely. It just looks
+like the original page, because the same "movieresults.html" page is being rendered. 
+
+Since I'm the one who coded this, I can explain my methodology. This was the only, quickest, way I could force pagination.
+Rendering a new page and basically "resetting" is probably less than optimal. But the logic is still sound. The python code
+creates a dictionary of values. And that is all passed back to this page, when it renders. Below you see conditional Jinja2
+logic being used. If a Next URL exists, then enable the Next button, otherwise keep it disabled. And the same for the 
+Previous button. If a Previous link exists, then enable the button, otherwise disable. You'll notice the buttons are "greyed"
+out, when a link is not available. -->
+
       <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
           <li class="page-item" style="margin: 10px;">
@@ -76,7 +112,6 @@
         </ul>
       </nav>
     </div>
-      <script> import { default as endpoint } from '/static/endpoint.js';
       </script>
       <script src="{{ url_for('static', filename='popper.min.js') }}"></script>
       <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>

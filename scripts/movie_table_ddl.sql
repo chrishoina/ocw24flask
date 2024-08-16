@@ -1,3 +1,7 @@
+-- You can execute this as-is, in your schema. Pay special
+-- attention to the Movie_ID Primary Key. This is what 
+-- allows you to take advantage of ORDS Route Parameters.
+-- 
 CREATE TABLE "MOVIE" (
     "MOVIE_ID"     NUMBER,
     "TITLE"        VARCHAR2(200 BYTE),
