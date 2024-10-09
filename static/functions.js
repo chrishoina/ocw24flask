@@ -9,7 +9,7 @@ async function fetchData(event){
 // it associates the "event" with whichever plus sign was clicked. NOTE: The plus sign is referred to as 
 // "bi bi-plus" in the code.
 
-        const response = await fetch(`[Your ords/mymovies/movie-single/ endpoint goes here]${movie_id}`);
+        const response = await fetch(`https://gf641ea24ecc468-ordsdemo.adb.us-ashburn-1.oraclecloudapps.com/ords/ordsdemo/mymovies/movie-single/${movie_id}`);
 
 // When you add your ORDS URI above, you'll need to remove the ":id" portion. You DO want to keep the 
 // ${movie_id} expression though. That will allow you to pass the movie_id as a route parameter. If you review the handler code 

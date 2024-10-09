@@ -18,7 +18,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
 
-    r1 = requests.get("[Your /ords/mymovies/movie-genre endpoint goes here]")
+    r1 = requests.get("https://gf641ea24ecc468-ordsdemo.adb.us-ashburn-1.oraclecloudapps.com/ords/ordsdemo/mymovies/movie-genre")
 
 # Here you are creating an empty list, which will be populated with the items from this ORDS API. If you are viewing the
 # Handler code, in the Database Actions REST Workshop, then you'll see how a "Unique" list of movie genres
@@ -70,7 +70,7 @@ def handle_data():
         runtime = request.form.get('runtime')
         data1 = {'genre': genre,'runtime': runtime}
 
-        r2 = requests.get("[Your ords/mymovies/movie-all endpoint goes here]", params=data1)
+        r2 = requests.get("https://gf641ea24ecc468-ordsdemo.adb.us-ashburn-1.oraclecloudapps.com/ords/ordsdemo/mymovies/movie-all", params=data1)
 
         data2 = r2.json()
         
